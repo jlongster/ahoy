@@ -1,0 +1,84 @@
+
+html, body {
+    height: 100%;
+    font-family: Verdana;
+    font-size: 12px;
+}
+
+body {
+    display: box;
+    display: -moz-box;
+    display: -webkit-box;
+    box-orient: vertical;
+    -moz-box-orient: vertical;
+    -webkit-box-orient: vertical;
+
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+.content {
+    box-flex: 1;
+    -moz-box-flex: 1;
+    -webkit-box-flex: 1;
+
+    display: box;
+    display: -moz-box;
+    display: -webkit-box;
+}
+
+#editors, #canvas {
+    box-flex: 1;
+    -moz-box-flex: 1;
+    -webkit-box-flex: 1;
+}
+
+#editors {
+    display: box;
+    display: -moz-box;
+    display: -webkit-box;
+    box-orient: vertical;
+    -moz-box-orient: vertical;
+    -webkit-box-orient: vertical;
+}
+
+#css-editor, #html-editor { 
+    box-flex: 1;
+    -moz-box-flex: 1;
+    -webkit-box-flex: 1;
+
+    margin: 0;
+    position: relative;
+}
+
+#css-editor .name, #html-editor .name {
+    position: absolute;
+    top: 0;
+    right: 25px;
+
+    background-color: green;
+    padding: .5em 1em;
+    color: white;
+}
+
+.header {
+    margin: 5px 10px;
+}
+
+.madeby {
+    margin-top: 2px;
+    float: right;
+}
+
+.error {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    background-color: yellow;
+    padding: 10px 0;
+}
+
+form { display: inline }

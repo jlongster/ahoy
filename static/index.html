@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Edit This</title>
+    <script src="/js/zepto.min.js"></script>
+    <script src="/js/ace.js"></script>
+    <script src="/js/socket.io.js"></script>
+    <script src="/js/less-1.3.0.min.js"></script>
+    <script src="/share/share.js"></script>
+    <script src="/share/ace.js"></script>
+
+    <link rel="stylesheet" href="/css/site.css" />
+  </head>
+  
+  <body>
+    <div class="header">
+      This is the <strong class="name"></strong> pad. 
+      &nbsp;&nbsp;
+      Hit <strong>ESC</strong> to get 10 SECONDS TO FIX.
+      &nbsp;&nbsp;
+      <form class="create" action="">
+        <button type="submit">Create a pad</button>
+        called <input type="text" value="" />
+      </form>.
+
+      <div class="madeby">
+        Made by <a href="http://twitter.com/jlongster">James Long</a>
+      </div>
+    </div>
+
+    <div class="content">
+      <div id="editors">
+        <div id="css-editor">hello</div>
+        <div id="html-editor"></div>
+      </div>
+      <div id="canvas"></div>
+    </div>
+
+    <div class="error"></div>
+
+    <script src="/js/livecss.js"></script>
+  </body>
+</html>
