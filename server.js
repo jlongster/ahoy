@@ -31,5 +31,5 @@ server.use(
 sharejs.attach(server, options);
 
 server.listen(config.port, function(){
-    console.log('Server running at http://127.0.0.1:8000/');
+    console.log('Server running on port ' + config.port);
 });
