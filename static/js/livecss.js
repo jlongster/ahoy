@@ -16,11 +16,37 @@ $(function() {
     sharejs.open(name + "-css", "text", function(error, doc) {
         doc.attach_ace(cssEditor);
         window.cssDoc = doc;
+        setCSS();
+
+        var timer;
+
+        doc.on('change', function() {
+            if(timer) {
+                clearTimeout(timer);
+            }
+
+            timer = setTimeout(function() {
+                setCSS();
+            }, 300);
+        });
     });
 
     sharejs.open(name + "-html", "text", function(error, doc) {
         doc.attach_ace(htmlEditor);
         window.htmlDoc = doc;
+        setHTML();
+
+        var timer;
+
+        doc.on('change', function() {
+            if(timer) {
+                clearTimeout(timer);
+            }
+
+            timer = setTimeout(function() {
+                setHTML();
+            }, 300);
+        });
     });
 
     $('#css-editor').append('<div class="name">CSS</div>');
@@ -40,9 +66,11 @@ $(function() {
             $('#dynamic-css').remove();
             $('#canvas').empty();
 
-            stopRefresh();
+            stopApplying();
             setTimeout(function() {
-                startRefresh();
+                startApplying();
+                setCSS();
+                setHTML();
             }, 10*1000);
         }
     });
@@ -58,42 +86,45 @@ function hideError() {
     $('.error').hide();
 }
 
-function refresh() {
+function setHTML() {
+    if(applying) {
+        var html = window.htmlDoc.getText();
+        $('#canvas').html(html);
+    }
+}
+
+function setCSS() {
     var content = window.cssDoc.getText();
     var parser = new less.Parser();
 
-    parser.parse('#canvas { ' + content + ' }', function(err, tree) {
-        if(err) {
-            showError(err.message);
-        }
-        else {
-            hideError();
-
-            var old = document.getElementById('dynamic-css');
-            if(old) {
-                document.body.removeChild(old);
+    if(applying) {
+        parser.parse('#canvas { ' + content + ' }', function(err, tree) {
+            if(err) {
+                showError(err.message);
             }
+            else {
+                hideError();
+                var css = $('#dynamic-css');
 
-            var text = document.createTextNode(tree.toCSS());
-            var style = document.createElement('style');
-            style.type = 'text/css';
-            style.id = 'dynamic-css';
-            style.appendChild(text);
-            document.body.appendChild(style);            
-        }
-    });
+                if(!css.length) {
+                    $('body').append(
+                        '<style id="dynamic-css" type="text/css"></style>'
+                    );
+                    css = $('#dynamic-css');
+                }
 
-    var html = window.htmlDoc.getText();
-    $('#canvas').html(html);
+                $('#dynamic-css').text(tree.toCSS());
+            }
+        });
+    }
 }
 
-var refreshInterval;
-function startRefresh() {
-    refreshInterval = setInterval(refresh, 1000);
+var applying = true;
+
+function stopApplying() {
+    applying = false;
 }
 
-function stopRefresh() {
-    clearInterval(refreshInterval);
+function startApplying() {
+    applying = true;
 }
-
-startRefresh();

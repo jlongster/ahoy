@@ -3,4 +3,4 @@ Don't look at this.
 
 To install:
 
-npm install connect@~1 share
+npm install connect@~1 share redis

@@ -1,0 +1,10 @@
+
+html, body {
+    font-family: Verdana;
+    font-size: 14px;
+}
+
+.about {
+    width: 600px;
+    margin: 0 auto;
+}
