@@ -1,0 +1,6 @@
+
+Don't look at this.
+
+To install:
+
+npm install connect@~1 share

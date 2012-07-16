@@ -13,12 +13,12 @@ $(function() {
         name = "global";
     }
 
-    sharejs.open(name + "-css", "text", function(doc, error) {
+    sharejs.open(name + "-css", "text", function(error, doc) {
         doc.attach_ace(cssEditor);
         window.cssDoc = doc;
     });
 
-    sharejs.open(name + "-html", "text", function(doc, error) {
+    sharejs.open(name + "-html", "text", function(error, doc) {
         doc.attach_ace(htmlEditor);
         window.htmlDoc = doc;
     });
