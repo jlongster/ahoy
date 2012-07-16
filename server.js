@@ -1,6 +1,7 @@
 var connect = require('connect');
 var sharejs = require('share').server;
 var fs = require('fs');
+var config = require('./config');
 
 var server = connect(
     connect.logger(),
@@ -29,6 +30,6 @@ server.use(
 // Attach the sharejs REST and Socket.io interfaces to the server
 sharejs.attach(server, options);
 
-server.listen(8000, function(){
+server.listen(config.port, function(){
     console.log('Server running at http://127.0.0.1:8000/');
 });
