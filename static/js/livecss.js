@@ -89,9 +89,13 @@ function hideError() {
 function setHTML() {
     if(applying) {
         var html = window.htmlDoc.getText();
-        html = html.replace('<script', '');
-        html = html.replace('&lt;script', '');
-        $('#canvas').html(html);
+        var blacklist = "script, img[onerror], style, iframe";
+        var canvas = $('#canvas');
+        
+        var el = $('<div>' + html);
+        el.find(blacklist).remove();
+
+        canvas.html(el.html());
     }
 }
 
