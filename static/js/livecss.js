@@ -89,9 +89,12 @@ function hideError() {
 function setHTML() {
     if(applying) {
         var html = window.htmlDoc.getText();
-        var blacklist = "script, img[onerror], style, iframe";
+        var blacklist = "script, img[onerror], style, iframe, meta";
         var canvas = $('#canvas');
-        
+
+        html = html.replace(/onerror/gi, '');
+        html = html.replace(/onmouseover/gi, '');
+        html = html.replace(/onclick/gi, '');
         var el = $('<div>' + html);
         el.find(blacklist).remove();
 
