@@ -37,6 +37,7 @@ body {
     -moz-box-flex: 1;
     -webkit-box-flex: 1;
     position: relative;
+    overflow: auto;
 }
 
 #editors {
