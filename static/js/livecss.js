@@ -93,6 +93,7 @@ function setHTML() {
         var canvas = $('#canvas');
 
         html = html.replace(/onerror/gi, '');
+        html = html.replace(/onload/gi, '');
         html = html.replace(/onmouseover/gi, '');
         html = html.replace(/onclick/gi, '');
         var el = $('<div>' + html);
